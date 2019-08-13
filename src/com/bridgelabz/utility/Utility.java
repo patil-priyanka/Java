@@ -9,6 +9,8 @@
  ******************************************************************************/
 package com.bridgelabz.utility;
 
+import java.util.Random;
+
 public class Utility {
 	
 	/** 
@@ -279,8 +281,171 @@ public class Utility {
 		System.out.println(win+"win of "+numberOfTime);
 		System.out.println("Percentage of win"+(win*100/numberOfTime));
 		System.out.println("Percentage of Loss"+((numberOfTime-win)*100/numberOfTime));
+	}
+	
+	/**
+	 * Purpose: Coin flip and calculate percentage of Head vs Tail.
+	 * 
+	 * @param 	numberOfFlip	No of times coin flip.
+	 */
+	public static void flipCoin(int numberOfFlip) {
+		int head=0,tail=0;
+		for(int i=1;i<=numberOfFlip;i++){
+			Random random=new Random();
+			int coin=(int)random.nextInt(1+1)+0;
+			if(coin==1) {
+				System.out.println("Coin Flip "+i+" :head");
+				head++;
+			}
+			else {
+				System.out.println("Coin Flip "+i+" :tail");
+				tail++;
+			}	
+		}
+		System.out.println("Head: "+head+" Tail:  "+tail+"\nPercentage of head vs tail:"+(head/tail*100));	
+	}
+	
+	/**
+	 * @param 	range	range to be add.
+	 */
+	public static void powerOf2(int range) {
+		System.out.println("power of 2: ");
+		for(int i=1;i<=range;i++) {
+			System.out.print((int)Math.pow(2,i)+" ");
+		}
+	}
+	
+	/**
+	 * @param 	number	Upto this number the harmonic number will be print.
+	 */
+	public static void harmonicNumber(int number) {
+		double sum=1;
+		String string="1/1";
+		for(int i=2;i<=number;i++) {
+            string=string+"+"+"1/"+i;
+			sum =sum+ 1.0 / i;
+			
+		}
+		System.out.println("Harmonic Number: "+string);
+		System.out.println("Sum of harmonic number: "+sum);
+	}
+	
+	/**
+	 * Purpose: To calculate prefect square root of the given number.
+	 * 
+	 * @param 	number	number to be add.
+	 * @return	temp	return square root of the number.
+	 */
+	public double squareRoot(double number) {
+		double epsilon=1e-15;
+		double temp=number;
+		while(Math.abs(temp - number/temp) > epsilon*temp) {
+			temp=(number/temp+temp)/2.0;
+		}
+		return temp;
+	}
+	
+	/**
+	 * Purpose: To print all prime number between the range.
+	 * 
+	 * @param 	lowerLimit	To start prime number to lower limit.
+	 * @param 	upperLimit	To end prime number to upper limit.
+	 */
+	public void primeNumber(int lowerLimit,int upperLimit) {
+		String primeno="";
+		for(int i=lowerLimit;i<=upperLimit;i++) {
+			int count=0;
+			for(int j=2;j<=i-1;j++) {
+				if(i%j==0) {
+					count=count+1;
+					break;
+				}
+			}
+			if(count==0) {
+				primeno=primeno+i+" ";
+			}
+		}
+		System.out.println("Prime numbers between "+lowerLimit+" to "+upperLimit+"\n"+primeno);
+	}
+	
+	/**
+	 * Purpose: To convert decimal number to binary number.
+	 * 
+	 * @param	 number		Decimal number to add.
+	 */
+	public void decimalToBinary(int number) {
+		System.out.println("Decimal to binary conversion: ");
+		int array[]=new int[32];
+		String string="";
+		int i=0;
+		while(number>0) {
+			array[i]=number%2;
+			number=number/2;
+			i++;
+		}
+		for(int j=i-1;j>=0;j--) {
+			string=string+array[j];
+		}
+		System.out.println(string);
+		int stringToInt=Integer.parseInt(string); 
+		string=String.format("%032d",stringToInt);
+		System.out.println(string);
+	}
+	
+	/**
+	 * @param 	angle	sin angle
+	 * @return	sum		sum of taylor series.
+	 */
+	public double sin(double angle) {
+		angle = angle % (2 * Math.PI);
+		
+        double term = 1.0;      // ith term = x^i / i!
+        double sum  =0.0;      // sum of first i terms in taylor series
 
+        for (int i = 1; term != 0.0; i++) {
+        	term *= (angle / i);
+            if (i % 4 == 1) sum += term;
+            if (i % 4 == 3) sum -= term;
+		}
+		return sum;
+	}
+	
+	public double cos(double angle) {
+		angle = angle % (2 * Math.PI);
 		
-		
+        double term = 1.0;      // ith term = x^i / i!
+        double sum  = 0.0;      // sum of first i terms in taylor series
+
+        for (int i = 1; term != 0.0; i++) {
+        	term *= (angle / i);
+            if (i % 4 == 2) sum += term;
+            if (i % 4 == 4) sum -= term;
+			i=i+2;
+		}
+		return sum;
+	}
+
+	public void binarySwap(int number) {
+		System.out.println("Decimal to binary conversion: ");
+		int array[]=new int[32];
+		String string="";
+		int i=0;
+		while(number>0) {
+			array[i]=number%2;
+			number=number/2;
+			i++;
+		}
+		for(int j=i-1;j>=0;j--) {
+			string=string+""+array[j];
+		}
+		int stringToInt=Integer.parseInt(string); 
+		string=String.format("%08d",stringToInt);
+		System.out.println(string);
+		String[] parts = string.split("",4);
+		String string1 = parts[0];
+		String string2 = parts[1];
+		//System.out.println(split());
+		System.out.println(string1);  // prints name1
+		System.out.println(string2);  // prints name2, name3, name4
 	}
 }
