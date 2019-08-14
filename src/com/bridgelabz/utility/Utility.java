@@ -415,16 +415,15 @@ public class Utility {
 	 */
 	public double cos(double angle) {
 		angle = angle % (2 * Math.PI);
-		
-        double term = 1.0;      // ith term = x^i / i!
+		System.out.println(angle);
+        double term = angle;      // ith term = x^i / i!
         double sum  = 1.0;      // sum of first i terms in taylor series
 
-        for (int i = 3; term != 0.0; i++) {
+        for (int i = 2; term != 0.0; i++) {
+        	
         	term *= (angle / i);
-        	int j=i/2;
-            if (j % 2 == 1) sum -= term;
-            if (j % 2 ==0 ) sum += term;
-			i=i+2;
+            if (i % 4 == 2) sum -= term;
+            if (i % 4 == 0 ) sum += term;
 		}
 		return sum;
 	}
@@ -470,7 +469,7 @@ public class Utility {
 	public void rollDie(int length,int arrays[]) {
 		Arrays.sort(arrays);
         int maxCount=0,result=arrays[0],currentCount=0;
-        for(int i = 0; i < length; i++)
+        for(int i = 1; i < length; i++)
         {
         	if(arrays[i]==arrays[i-1]) {
 				currentCount++;
@@ -498,17 +497,18 @@ public class Utility {
 	 * @param 	array	given array
 	 * @return	array[]	return duplicate number
 	 */
-	public int duplicateNumber(int[] array) {
+	public void duplicateNumber(int[] array) {
 		Arrays.sort(array);
 		int length=array.length;
-		for(int i=0;i<length;i++) {
-			if(array[i]==array[i-1]) {
-				return array[i];
+		if(array[0]==array[1])
+			System.out.print(" "+array[0]);
+		for(int i=1;i<length;i++) {
+			if(array[i]==array[i-1]&&array[i]==array[i+1]) {
+				System.out.print(" "+array[i]);
 			}
 		}
 		if(array[length-2]==array[length-1])
-			return array[length-1];
-		return 0;
+			System.out.print(" "+array[length-1]);
 	}
 	
 	/**
@@ -530,9 +530,9 @@ public class Utility {
 			}
 		}
 		if(first<second)
-			System.out.println(first);
+			System.out.println("Second largest number: "+first);
 		else
-			System.out.println(second);
+			System.out.println("Second largest number: "+second);
 		
 		for(int i=0;i<length;i++) {
 			if(arrays[i]<first) {
@@ -544,9 +544,9 @@ public class Utility {
 			}
 		}
 		if(first>second)
-			System.out.println(first);
+			System.out.println("Second smallest number: "+first);
 		else
-			System.out.println(second);
+			System.out.println("Second smallest number: "+second);
 	}
 	
 	/**
@@ -554,14 +554,11 @@ public class Utility {
 	 * @param 	number	number to be add.
 	 */
 	public void primeFactor(int number) {
-		for(int i = 2; i< number; i++) {
+		for(int i = 2; i*i<=number; i++) {
 	         while(number%i == 0) {
 	            System.out.println(i+" ");
 	            number = number/i;
 	         }
-	      }
-	      if(number >2) {
-	         System.out.println(number);
 	      }
 	}
 	

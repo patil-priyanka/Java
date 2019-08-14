@@ -9,6 +9,7 @@
  ******************************************************************************/
 package com.bridgelabz.javaconditionprograms;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import com.bridgelabz.utility.Utility;
@@ -17,15 +18,15 @@ public class DuplicateNumber {
 
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
-		System.out.println("Enter total number count: ");
-		int count=scanner.nextInt();
-		int[] array=new int[count];
+		int[] array=new int[100];
+		Random random=new Random();
 		for(int i=0;i<array.length;i++) {
-			array[i]=scanner.nextInt();
+			array[i]=(int)random.nextInt(100)+1;
+			System.out.print(" "+array[i]);
 		}
 		Utility utility=new Utility();
-		int result=utility.duplicateNumber(array);
-		System.out.println("duplicate number:  "+result);
+		System.out.println("\nduplicate number:  ");
+		utility.duplicateNumber(array);
 		scanner.close();
 
 	}

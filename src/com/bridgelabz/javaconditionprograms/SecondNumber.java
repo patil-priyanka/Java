@@ -21,6 +21,7 @@ public class SecondNumber {
 		int number=scanner.nextInt();
 		int arrays[] = new int[number];
 		int length=arrays.length;
+		System.out.println("Enter the number: ");
 		for(int i = 0; i < length; i++)
         {
 			arrays[i]=scanner.nextInt();
