@@ -1,29 +1,34 @@
+package com.bridgelabz.javaconditionprograms;
+
 /******************************************************************************
  *  
- *  Purpose: To convert decimal to binary number and swap nibbles and calculate new decimal number.
+ *  Purpose: Find second largest and smallest number in array.
  *
  *  @author  Priyanka
  *  @version 1.0
  *  @since   14-08-2019
  *
  ******************************************************************************/
-package com.bridgelabz.javaconditionprograms;
-
 import java.util.Scanner;
 
 import com.bridgelabz.utility.Utility;
 
-public class BinarySwap {
+public class SecondNumber {
 
 	public static void main(String[] args) {
-		System.out.println("Enter the Decimal number:");
 		Scanner scanner=new Scanner(System.in);
-		int decimalNumber=scanner.nextInt();
+		System.out.println("Enter number of elements: ");
+		int number=scanner.nextInt();
+		int arrays[] = new int[number];
+		int length=arrays.length;
+		for(int i = 0; i < length; i++)
+        {
+			arrays[i]=scanner.nextInt();
+        }
 		Utility utility=new Utility();
-		System.out.println("Decimal number: "+decimalNumber);
-		int result=utility.binarySwap(decimalNumber);
-		System.out.println("New decimal Number: "+result);
+		utility.secondNumber(length,arrays);
 		scanner.close();
+
 	}
 
 }

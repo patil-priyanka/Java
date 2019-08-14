@@ -9,6 +9,7 @@
  ******************************************************************************/
 package com.bridgelabz.utility;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Utility {
@@ -373,7 +374,7 @@ public class Utility {
 	 * 
 	 * @param	 number		Decimal number to add.
 	 */
-	public void decimalToBinary(int number) {
+	public String decimalToBinary(int number) {
 		System.out.println("Decimal to binary conversion: ");
 		int array[]=new int[32];
 		String string="";
@@ -386,10 +387,8 @@ public class Utility {
 		for(int j=i-1;j>=0;j--) {
 			string=string+array[j];
 		}
-		System.out.println(string);
-		int stringToInt=Integer.parseInt(string); 
-		string=String.format("%032d",stringToInt);
-		System.out.println(string);
+		return string;
+		
 	}
 	
 	/**
@@ -410,42 +409,200 @@ public class Utility {
 		return sum;
 	}
 	
+	/**
+	 * @param 	angle	Cos angle to be add.
+	 * @return	sum		Return sum of taylor series. 
+	 */
 	public double cos(double angle) {
 		angle = angle % (2 * Math.PI);
 		
         double term = 1.0;      // ith term = x^i / i!
-        double sum  = 0.0;      // sum of first i terms in taylor series
+        double sum  = 1.0;      // sum of first i terms in taylor series
 
-        for (int i = 1; term != 0.0; i++) {
+        for (int i = 3; term != 0.0; i++) {
         	term *= (angle / i);
-            if (i % 4 == 2) sum += term;
-            if (i % 4 == 4) sum -= term;
+        	int j=i/2;
+            if (j % 2 == 1) sum -= term;
+            if (j % 2 ==0 ) sum += term;
 			i=i+2;
 		}
 		return sum;
 	}
 
-	public void binarySwap(int number) {
-		System.out.println("Decimal to binary conversion: ");
-		int array[]=new int[32];
-		String string="";
-		int i=0;
-		while(number>0) {
-			array[i]=number%2;
-			number=number/2;
-			i++;
-		}
-		for(int j=i-1;j>=0;j--) {
-			string=string+""+array[j];
-		}
+	/**
+	 * Purpose: To convert decimal to binary number and swap nibbles and calculate new decimal number.
+	 * @param 	number	input decimal number
+	 */
+	public int binarySwap(int number) {
+		//Decimal to binary conversion method
+		String string=decimalToBinary(number);
+		
+		System.out.println("Binary number: "+string);
 		int stringToInt=Integer.parseInt(string); 
 		string=String.format("%08d",stringToInt);
-		System.out.println(string);
-		String[] parts = string.split("",4);
-		String string1 = parts[0];
-		String string2 = parts[1];
-		//System.out.println(split());
-		System.out.println(string1);  // prints name1
-		System.out.println(string2);  // prints name2, name3, name4
+		int length=string.length();
+		String [] splits=new String[2];
+		splits[0] = string.substring(0,length/2);
+		splits[1] = string.substring(length/2,length);
+		
+		System.out.println(splits[0]); 
+		System.out.println(splits[1]);  
+		
+		String newString=splits[1].concat(splits[0]);
+		int binaryNumber=Integer.parseInt(newString);
+		System.out.println("New binary number: "+binaryNumber);
+		int digit=0,decimalNumber=0,i=0;
+		while(binaryNumber>0) {
+			digit=binaryNumber%10;
+			binaryNumber=binaryNumber/10;
+			decimalNumber=decimalNumber+(digit*(int)Math.pow(2, i));
+			i++;
+		}
+		return decimalNumber;
+	}
+	
+	/**
+	 *  Purpose: calculate most frequent number.
+	 *  
+	 * @param 	length	length of given array.
+	 * @param 	arrays	random number store in array.
+	 */
+	public void rollDie(int length,int arrays[]) {
+		Arrays.sort(arrays);
+        int maxCount=0,result=arrays[0],currentCount=0;
+        for(int i = 0; i < length; i++)
+        {
+        	if(arrays[i]==arrays[i-1]) {
+				currentCount++;
+			}
+			else {
+				if(currentCount>maxCount) {
+					maxCount=currentCount;
+					result=arrays[i-1];
+				}
+				currentCount=1;
+			}
+			if(currentCount>maxCount) {
+				maxCount=currentCount;
+				result=arrays[i-1];
+			}
+		}
+		System.out.println(result);
+        
+		
+	}
+	
+	/**
+	 * Purpose: Find duplicate number in given array.
+	 * 
+	 * @param 	array	given array
+	 * @return	array[]	return duplicate number
+	 */
+	public int duplicateNumber(int[] array) {
+		Arrays.sort(array);
+		int length=array.length;
+		for(int i=0;i<length;i++) {
+			if(array[i]==array[i-1]) {
+				return array[i];
+			}
+		}
+		if(array[length-2]==array[length-1])
+			return array[length-1];
+		return 0;
+	}
+	
+	/**
+	 * Purpose: Find second largest and smallest number in array.
+	 * 
+	 * @param length	length of given array.
+	 * @param arrays	given array.
+	 */
+	public void secondNumber(int length,int arrays[]) {
+		int first,second;
+		first=second=arrays[0];
+		for(int i=0;i<length;i++) {
+			if(arrays[i]>first) {
+				second=first;
+				first=arrays[i];
+			}
+			else if(arrays[i]>second&&arrays[i]!=first) {
+				second=arrays[i];
+			}
+		}
+		if(first<second)
+			System.out.println(first);
+		else
+			System.out.println(second);
+		
+		for(int i=0;i<length;i++) {
+			if(arrays[i]<first) {
+				second=first;
+				first=arrays[i];
+			}
+			else if(arrays[i]<second&&arrays[i]!=first) {
+				second=arrays[i];
+			}
+		}
+		if(first>second)
+			System.out.println(first);
+		else
+			System.out.println(second);
+	}
+	
+	/**
+	 *  Purpose: Calculate prime factor of given number.
+	 * @param 	number	number to be add.
+	 */
+	public void primeFactor(int number) {
+		for(int i = 2; i< number; i++) {
+	         while(number%i == 0) {
+	            System.out.println(i+" ");
+	            number = number/i;
+	         }
+	      }
+	      if(number >2) {
+	         System.out.println(number);
+	      }
+	}
+	
+	/**
+	 * Purpose: To determine string is anagram or not.
+	 * @param 	string1		first string to be add.
+	 * @param 	string2		second string to be add.
+	 * @return	boolean		return true if string is anagram else false
+	 */
+	public static boolean anagram(String string1, String string2) {
+		 boolean status = true;  
+	        if (string1.length() != string2.length()) {  
+	            status = false;  
+	        } else {  
+	            char[] ArrayS1 = string1.toLowerCase().toCharArray();  
+	            char[] ArrayS2 = string2.toLowerCase().toCharArray();  
+	            Arrays.sort(ArrayS1);  
+	            Arrays.sort(ArrayS2);  
+	            status = Arrays.equals(ArrayS1, ArrayS2);  
+	        }  
+	        if (status) {   
+	            return true;
+	        } else {   
+	            return false;
+	        }  
+	        
+	}
+	
+	/**
+	 * 
+	 * @param 	string
+	 * @return
+	 */
+	public static boolean palindromeString(String string) {
+		String reverse="";
+		for(int i=string.length()-1;i>=0;i--) {
+				reverse=reverse+string.charAt(i); }
+		if(string==reverse)
+			return true;
+		else 
+			return false;
+		
 	}
 }

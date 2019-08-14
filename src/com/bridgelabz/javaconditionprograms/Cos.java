@@ -21,7 +21,7 @@ public class Cos {
 		double angle=scanner.nextDouble();
 		Utility utility=new Utility();
 		double result=utility.cos(angle);
-		System.out.println("sin("+angle+") : "+result);
+		System.out.println("cos("+angle+") : "+result);
 		scanner.close();
 	}
 

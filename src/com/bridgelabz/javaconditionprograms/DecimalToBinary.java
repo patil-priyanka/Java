@@ -18,7 +18,10 @@ public class DecimalToBinary {
 		int decimalNumber=Integer.parseInt(args[0]);
 		Utility utility=new Utility();
 		System.out.println("Decimal number: "+decimalNumber);
-		utility.decimalToBinary(decimalNumber);
+		String string=utility.decimalToBinary(decimalNumber);
+		int stringToInt=Integer.parseInt(string); 
+		string=String.format("%032d",stringToInt);
+		System.out.println(string);
 	}
 
 }
