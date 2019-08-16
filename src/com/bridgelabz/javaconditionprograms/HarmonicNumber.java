@@ -16,7 +16,8 @@ public class HarmonicNumber {
 
 	public static void main(String[] args) {
 		int number=Integer.parseInt(args[0]);
-		Utility.harmonicNumber(number);
+		double sum=Utility.harmonicNumber(number);
+		System.out.println("Sum of harmonic number: "+sum);
 	}
 
 }

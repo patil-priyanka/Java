@@ -19,8 +19,7 @@ public class Cos {
 		System.out.println("Enter the cos angle:");
 		Scanner scanner=new Scanner(System.in);
 		double angle=scanner.nextDouble();
-		Utility utility=new Utility();
-		double result=utility.cos(angle);
+		double result=Utility.cos(angle);
 		System.out.println("cos("+angle+") : "+result);
 		scanner.close();
 	}

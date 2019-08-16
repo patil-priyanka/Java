@@ -17,14 +17,13 @@ public class LeapYear {
 
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
-		Utility utility=new Utility();
 		System.out.println("Enter the year: ");
 		int year=scanner.nextInt();
 		if(year<=1582) {
 			System.out.println("Given year in the Gregorian calendar.");
 		}
 		else {
-			boolean result=utility.leapYear(year);
+			boolean result=Utility.leapYear(year);
 			if(result==true) 
 				System.out.println("Given year is leap year");
 		    else

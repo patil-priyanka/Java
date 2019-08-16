@@ -72,7 +72,7 @@ public class Utility {
 	 * @return	true	Given year is leap year.
 	 * 			false	Given year is not leap year.
 	 */
-	public boolean leapYear(int year) {
+	public static boolean leapYear(int year) {
 		if(year%4==0) {
 			if(year%100==0) {
 				if(year%400==0) 
@@ -318,8 +318,9 @@ public class Utility {
 	
 	/**
 	 * @param 	number	Upto this number the harmonic number will be print.
+	 * @return 
 	 */
-	public static void harmonicNumber(int number) {
+	public static double harmonicNumber(int number) {
 		double sum=1;
 		String string="1/1";
 		for(int i=2;i<=number;i++) {
@@ -328,7 +329,7 @@ public class Utility {
 			
 		}
 		System.out.println("Harmonic Number: "+string);
-		System.out.println("Sum of harmonic number: "+sum);
+		return sum;
 	}
 	
 	/**
@@ -374,7 +375,7 @@ public class Utility {
 	 * 
 	 * @param	 number		Decimal number to add.
 	 */
-	public String decimalToBinary(int number) {
+	public static String decimalToBinary(int number) {
 		System.out.println("Decimal to binary conversion: ");
 		int array[]=new int[32];
 		String string="";
@@ -395,7 +396,7 @@ public class Utility {
 	 * @param 	angle	sin angle
 	 * @return	sum		sum of taylor series.
 	 */
-	public double sin(double angle) {
+	public static double sin(double angle) {
 		angle = angle % (2 * Math.PI);
 		
         double term = 1.0;      // ith term = x^i / i!
@@ -413,9 +414,8 @@ public class Utility {
 	 * @param 	angle	Cos angle to be add.
 	 * @return	sum		Return sum of taylor series. 
 	 */
-	public double cos(double angle) {
+	public static double cos(double angle) {
 		angle = angle % (2 * Math.PI);
-		System.out.println(angle);
         double term = angle;      // ith term = x^i / i!
         double sum  = 1.0;      // sum of first i terms in taylor series
 
@@ -601,5 +601,112 @@ public class Utility {
 		else 
 			return false;
 		
+	}
+	
+	public static void iterativeMethod(String string) {
+		for(int i=0;i<string.length();i++) {
+			for(int j=0;j<i;) {
+				
+			}
+		}
+		
+	}
+	
+	public static void recursionMethod(String string,int l,int r) {
+		
+		if(l==r)
+			System.out.println(string);
+		else{
+			for(int i=l;i<string.length();i++) {
+				string=swap(string,l,i);
+				recursionMethod(string,l+1,r);
+				//string=swap(string,l,i);
+				//result=result+string+"";
+				}
+		}
+		
+	}
+
+	private static String swap(String newString, int i, int j) {
+		char temp;
+		char[] charArray=newString.toCharArray();
+		temp=charArray[i];
+		charArray[i]=charArray[j];
+		charArray[j]=temp;
+		return String.valueOf(charArray);
+	}
+	
+	public static String calendar(int day, int month, int year) {
+		int temp,tempYear,tempMonth,tempDay;
+		tempYear= year-(14-month)/12;
+		temp=tempYear +tempYear/4-tempYear/100 +tempYear/400;
+		tempMonth= month + 12 *((14 -month)/12)-2;
+		tempDay=(temp+day+(31*tempMonth)/12);
+		day=Math.floorMod(tempDay, 7);
+		String[] arrays= {"Sunday","Monday","Tuesday","Wednsday","Thurdsday","Friday","Saturday",""};
+		
+		if(day==1)
+			return arrays[1];
+		else if(day==2)
+			return arrays[2];
+		else if(day==3)
+			return arrays[3];
+		else if(day==4)
+			return arrays[4];
+		else if(day==5)
+			return arrays[5];
+		else if(day==6)
+			return arrays[6];
+		else if(day==0)
+			return arrays[0];
+		else
+			return arrays[7];
+	}
+	
+	public static void calendarDates(int day,int month, int year) {
+		Utility utility=new Utility();
+		int date=utility.dayOfWeek(day, month, year);
+		boolean leapYear=Utility.leapYear(year);
+		String [] months= {"","January","February","March","April","May","June","July","August","September","October","November","December"};
+		int [] days= {0,31,28,31,30,31,30,31,31,30,31,30,31};
+		if (month==2&&leapYear==true)
+			days[2]=29;
+		System.out.println("  "+months[month]+" "+year);
+		System.out.println(" S  M Tu  W Th  F  s");
+		for(int i=0;i<date;i++) 
+			System.out.print("  ");
+		for(int i=1;i<=days[month];i++) {
+			System.out.printf("%2d ",i);
+			if(((i+date)%7==0) ||(i==days[month]))
+				System.out.println();
+		}
+	}
+	
+	public static long factorial(int number) {
+		int factorial=1;
+		for(int i=1;i<=number;i++) {
+			factorial=factorial*i;
+		}
+		return factorial;	
+	}
+	
+	public static boolean isPrime(int number) {
+		int count=0;
+		
+		for(int i=2;i<=number-1;i++) {
+			if(number%i==0) {
+				count=count+1;
+				break;
+			}
+		}
+		if(count==0)
+			return true;
+		else
+			return false;
+	}
+	
+	public static double compountInterest(int principal,int rate,int year) {
+		double futureValue=principal*Math.pow(1+rate, year);
+		return futureValue;
 	}
 }

@@ -19,8 +19,7 @@ public class Sin {
 		System.out.println("Enter the sin angle:");
 		Scanner scanner=new Scanner(System.in);
 		double angle=scanner.nextDouble();
-		Utility utility=new Utility();
-		double result=utility.sin(angle);
+		double result=Utility.sin(angle);
 		System.out.println("sin("+angle+") : "+result);
 		scanner.close();
 	}
