@@ -10,10 +10,7 @@ public class RecursionMethod {
 		Scanner scanner=new Scanner(System.in);
 		System.out.println("Enter the string: ");
 		String string=scanner.nextLine();
-		//String answer=
-		
 		Utility.recursionMethod(string, 0,string.length());
-		//System.out.println(answer);
 		scanner.close();
 	}
 

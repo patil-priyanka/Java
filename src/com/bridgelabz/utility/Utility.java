@@ -554,6 +554,7 @@ public class Utility {
 	 * @param 	number	number to be add.
 	 */
 	public void primeFactor(int number) {
+		System.out.println("Prime factor of number: ");
 		for(int i = 2; i*i<=number; i++) {
 	         while(number%i == 0) {
 	            System.out.println(i+" ");
@@ -705,8 +706,53 @@ public class Utility {
 			return false;
 	}
 	
-	public static double compountInterest(int principal,int rate,int year) {
+	public static double futureValue(int principal,int rate,int year) {
 		double futureValue=principal*Math.pow(1+rate, year);
 		return futureValue;
+	}
+
+	public static double prsentValue(int principal,int rate,int year) {
+		double prsentValue=principal/Math.pow(1+rate, year);
+		return prsentValue;
+	}
+	
+	public static int maximumValue(int[] array) {
+		int length=array.length;
+		int maximum=array[0];
+		for(int i=0;i<length;i++) {
+			if(array[i]>maximum) {
+				maximum=array[i];
+			}
+		}
+		return maximum;
+	}
+	
+	public static int minimumValue(int[] array) {
+		int length=array.length;
+		int minimum=array[0];
+		for(int i=0;i<length;i++) {
+			if(array[i]>minimum) {
+				minimum=array[i];
+			}
+		}
+		return minimum;
+	}
+	
+	public static boolean checkCollinearUsingSlope(int []array) {
+		double SlopeAB =(array[3]-array[1])/(array[2]-array[0]);
+		double SlopeBC =(array[5]-array[3])/(array[4]-array[2]);
+		double SlopeAC =(array[3]-array[5])/(array[2]-array[4]);
+		if(SlopeAB==SlopeBC&&SlopeBC==SlopeAC)
+			return true;
+		else 
+			return false;
+	}
+	
+	public static boolean checkCollinearUsingArea(int []array) {
+		double result=1/2*Math.abs(((array[0]-array[2])*(array[3]-array[5]))-((array[2]-array[4])*(array[1]-array[3])));
+		if(result==0)
+			return true;
+		else 
+			return false;
 	}
 }
