@@ -1,3 +1,12 @@
+/******************************************************************************
+ *  
+ *  Purpose: To find Day Of Week for given a date .
+ *
+ *  @author  Priyanka
+ *  @version 1.0
+ *  @since   20-08-2019
+ *
+ ******************************************************************************/
 package com.bridgelabz.staticfunction;
 
 import com.bridgelabz.utility.Utility;

@@ -589,9 +589,9 @@ public class Utility {
 	}
 	
 	/**
-	 * 
-	 * @param 	string
-	 * @return
+	 * Purpose: To determine string is palindrome or not.
+	 * @param 	string	string to be add.
+	 * @return	return 	true if string is palindrome else false
 	 */
 	public static boolean palindromeString(String string) {
 		String reverse="";
@@ -604,15 +604,12 @@ public class Utility {
 		
 	}
 	
-	public static void iterativeMethod(String string) {
-		for(int i=0;i<string.length();i++) {
-			for(int j=0;j<i;) {
-				
-			}
-		}
-		
-	}
-	
+	/**
+	 * Purpose: To perform permutation of given string using recursion method .
+	 * @param 	string	string to be add.
+	 * @param 	l		first index of string to add.
+	 * @param 	r		last index of string to add.
+	 */
 	public static void recursionMethod(String string,int l,int r) {
 		
 		if(l==r)
@@ -621,9 +618,7 @@ public class Utility {
 			for(int i=l;i<string.length();i++) {
 				string=swap(string,l,i);
 				recursionMethod(string,l+1,r);
-				//string=swap(string,l,i);
-				//result=result+string+"";
-				}
+			}
 		}
 		
 	}
@@ -637,6 +632,13 @@ public class Utility {
 		return String.valueOf(charArray);
 	}
 	
+	/**
+	 * Purpose: To find Day Of Week for given a date .
+	 * @param 	day		Given the day in date to be add.
+	 * @param 	month	Given month to be add
+	 * @param 	year	Given year to be add.
+	 * @return	day		Return the day.
+	 */
 	public static String calendar(int day, int month, int year) {
 		int temp,tempYear,tempMonth,tempDay;
 		tempYear= year-(14-month)/12;
@@ -664,6 +666,12 @@ public class Utility {
 			return arrays[7];
 	}
 	
+	/**
+	 * Purpose: To print Calendar of the month .
+	 * @param 	day		Given the day in date to be add.
+	 * @param 	month	Given month to be add
+	 * @param 	year	Given year to be add.
+	 */
 	public static void calendarDates(int day,int month, int year) {
 		Utility utility=new Utility();
 		int date=utility.dayOfWeek(day, month, year);
@@ -683,6 +691,11 @@ public class Utility {
 		}
 	}
 	
+	/**
+	 * Purpose: To calculate factorial of given number.
+	 * @param 	number		number to be add.
+	 * @return	factorial	return factorial of number.
+	 */
 	public static long factorial(int number) {
 		int factorial=1;
 		for(int i=1;i<=number;i++) {
@@ -691,6 +704,11 @@ public class Utility {
 		return factorial;	
 	}
 	
+	/**
+	 * Purpose: To determine number is prime or not.
+	 * @param 	number	number to be add.
+	 * @return			return true if string is anagram else false
+	 */
 	public static boolean isPrime(int number) {
 		int count=0;
 		
@@ -706,16 +724,35 @@ public class Utility {
 			return false;
 	}
 	
+	/**
+	 * Purpose: To calculate future value.
+	 * @param 	principal	amount to be add.
+	 * @param 	rate		rate to be add.
+	 * @param 	year		year to be add.
+	 * @return	futureValue	return future Value.
+	 */
 	public static double futureValue(int principal,int rate,int year) {
 		double futureValue=principal*Math.pow(1+rate, year);
 		return futureValue;
 	}
 
+	/**
+	 * Purpose: To calculate present value.
+	 * @param 	principal	amount to be add.
+	 * @param 	rate		rate to be add.
+	 * @param 	year		year to be add.
+	 * @return	prsentValue	return present Value.
+	 */
 	public static double prsentValue(int principal,int rate,int year) {
 		double prsentValue=principal/Math.pow(1+rate, year);
 		return prsentValue;
 	}
 	
+	/**
+	 * Purpose: To find minimum value.
+	 * @param 	array	array element to be add.
+	 * @return	maximum	return maximum value.
+	 */
 	public static int maximumValue(int[] array) {
 		int length=array.length;
 		int maximum=array[0];
@@ -727,6 +764,11 @@ public class Utility {
 		return maximum;
 	}
 	
+	/**
+	 * Purpose: To find minimum value.
+	 * @param 	array	array element to be add.
+	 * @return	minimum	return minimum value.
+	 */
 	public static int minimumValue(int[] array) {
 		int length=array.length;
 		int minimum=array[0];
@@ -738,6 +780,11 @@ public class Utility {
 		return minimum;
 	}
 	
+	/**
+	 * Purpose: to check slope is colliner or not .
+	 * @param 	array	slope coordinates to be added.
+	 * @return	result	return result of collinear.
+	 */	
 	public static boolean checkCollinearUsingSlope(int []array) {
 		double SlopeAB =(array[3]-array[1])/(array[2]-array[0]);
 		double SlopeBC =(array[5]-array[3])/(array[4]-array[2]);
@@ -748,11 +795,96 @@ public class Utility {
 			return false;
 	}
 	
+	/**
+	 * Purpose: to check triangle is colliner or not using area.
+	 * @param 	array	triangle coordinates to be added.
+	 * @return	result	return result of collinear.
+	 */
 	public static boolean checkCollinearUsingArea(int []array) {
 		double result=1/2*Math.abs(((array[0]-array[2])*(array[3]-array[5]))-((array[2]-array[4])*(array[1]-array[3])));
 		if(result==0)
 			return true;
 		else 
 			return false;
+	}
+	
+	          /***************************String and Array*****************************/
+	/**
+	 * Purpose: To search the string in given string array.
+	 * @param 	string	string element to add.
+	 * @param 	search	search string to be add.
+	 * @return	mid		return position of search string.
+	 */
+	public static int  binarySearchString(String[] string,String search) {
+		for(int i=0;i<string.length;i++) {
+			System.out.println(string[i]);
+		}
+		int firstindex=0;
+		int lastindex=string.length-1;
+		while(firstindex<=lastindex) {
+			int mid=firstindex+(lastindex-firstindex)/2;
+			int result=search.compareTo(string[mid]);
+			if(result==0)
+				return mid;
+			if(result>0)
+				firstindex=mid+1;
+			else
+				lastindex=mid-1;
+		}
+		return -1;
+	}
+	
+	/**
+	 * @param 	array	element to be add.
+	 */
+	public static void bubbleSort(int []array) {
+		int temp=0,length=array.length;
+		for(int i=0;i<length-1;i++) {
+			for(int j=0;j<length-i-1;j++) {
+				if(array[j]>array[j+1]) {
+					temp=array[j];
+					array[j]=array[j+1];
+					array[j+1]=temp;
+				}
+			}
+		}
+		for(int i=0;i<length;i++) {
+			System.out.print(" "+array[i]);
+		}
+	}
+	
+	public static void mergeSortForString(String[] string)  {
+		int length=string.length;
+		if (length > 2) {
+			String[] left = new String[length / 2];
+			String[] right = new String[length -length / 2];
+
+		    for (int i = 0; i < left.length; i++) {
+		                left[i] = string[i];
+		            }
+
+		            for (int i = 0; i < right.length; i++) {
+		                right[i] = string[i + length / 2];
+		            }
+
+		            mergeSortForString(left);
+		            mergeSortForString(right);
+		            merge(string, left, right);
+		        }
+		    }
+
+	public static void merge(String[] names, String[] left, String[] right) {
+		int a = 0;
+		int b = 0;
+		for (int i = 0; i < names.length; i++) {
+			if (b >= right.length || (a < left.length && left[a].compareToIgnoreCase(right[b]) < 0)) {
+		    	names[i] = left[a];
+		        	a++;
+		    } 
+			else {
+				names[i] = right[b];
+		        b++;
+		   }
+		}
 	}
 }

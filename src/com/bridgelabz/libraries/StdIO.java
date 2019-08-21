@@ -1,3 +1,12 @@
+/******************************************************************************
+ *  
+ *  Purpose: Creating library for Standrad input.
+ *
+ *  @author  Priyanka
+ *  @version 1.0
+ *  @since   20-08-2019
+ *
+ ******************************************************************************/
 package com.bridgelabz.libraries;
 
 import java.util.ArrayList;

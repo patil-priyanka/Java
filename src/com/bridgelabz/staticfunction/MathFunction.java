@@ -1,3 +1,12 @@
+/******************************************************************************
+ *  
+ *  Purpose: To perform different mathematics operation .
+ *
+ *  @author  Priyanka
+ *  @version 1.0
+ *  @since   20-08-2019
+ *
+ ******************************************************************************/
 package com.bridgelabz.staticfunction;
 
 import java.util.Scanner;

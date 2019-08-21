@@ -1,3 +1,12 @@
+/******************************************************************************
+ *  
+ *  Purpose: Calculate maximum and minimum value in given array.
+ *
+ *  @author  Priyanka
+ *  @version 1.0
+ *  @since   20-08-2019
+ *
+ ******************************************************************************/
 package com.bridgelabz.staticfunction;
 
 public class MinMaxValue {

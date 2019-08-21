@@ -1,3 +1,12 @@
+/******************************************************************************
+ *  
+ *  Purpose: Creating library for random function.
+ *
+ *  @author  Priyanka
+ *  @version 1.0
+ *  @since   20-08-2019
+ *
+ ******************************************************************************/
 package com.bridgelabz.libraries;
 
 import java.util.Random;
@@ -12,9 +21,6 @@ public class BLRandom {
         seed = System.currentTimeMillis();
         random = new Random(seed);
     }
-
-    // don't instantiate
-    private void StdRandom() { }
 
     /**
      * Sets the seed of the pseudo-random number generator.
