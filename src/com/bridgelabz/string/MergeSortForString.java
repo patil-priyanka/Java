@@ -12,11 +12,15 @@ public class MergeSortForString {
 		int number=scanner.nextInt();
 		String []array=new String[number];
 		System.out.println("Enter the element");
-		for(int i=0;i<array.length;i++) {
-			array[i]=scanner.nextLine();
+		for(int i=0;i<number;i++) {
+			System.out.println(i);
+			array[i]=scanner.next();
 		}
 		System.out.println("Sorted array");
-		Utility.mergeSortForString(array);
+		String[] string=Utility.mergeSortForString(array);
+		for(int i=0;i<string.length;i++) {
+			System.out.println(string[i]);
+		}
 		scanner.close();
 
 	}

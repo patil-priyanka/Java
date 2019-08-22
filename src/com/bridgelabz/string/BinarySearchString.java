@@ -19,7 +19,6 @@ public class BinarySearchString {
 	public static void main(String[] args) throws IOException {
 		Scanner scanner=new Scanner(System.in);
 		try {
-			@SuppressWarnings("resource")
 			BufferedReader objReader=new BufferedReader( new FileReader("/home/admin6/eclipse-workspace/JavaPrograms/src/com/bridgelabz/string/Names.txt"));
 			StringBuilder sb = new StringBuilder();
 			String line = objReader.readLine();
@@ -39,6 +38,7 @@ public class BinarySearchString {
 		    }
 		    else
 		    	System.out.println("\nString found at "+(result+1)+" position");
+		    objReader.close();
 		}
         catch (Exception e) {
             System.out.println(e);

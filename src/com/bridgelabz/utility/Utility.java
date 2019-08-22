@@ -11,6 +11,7 @@ package com.bridgelabz.utility;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Utility {
 	
@@ -853,38 +854,115 @@ public class Utility {
 		}
 	}
 	
-	public static void mergeSortForString(String[] string)  {
-		int length=string.length;
-		if (length > 2) {
-			String[] left = new String[length / 2];
-			String[] right = new String[length -length / 2];
-
-		    for (int i = 0; i < left.length; i++) {
-		                left[i] = string[i];
-		            }
-
-		            for (int i = 0; i < right.length; i++) {
-		                right[i] = string[i + length / 2];
-		            }
-
-		            mergeSortForString(left);
-		            mergeSortForString(right);
-		            merge(string, left, right);
-		        }
-		    }
-
-	public static void merge(String[] names, String[] left, String[] right) {
-		int a = 0;
-		int b = 0;
-		for (int i = 0; i < names.length; i++) {
-			if (b >= right.length || (a < left.length && left[a].compareToIgnoreCase(right[b]) < 0)) {
-		    	names[i] = left[a];
-		        	a++;
-		    } 
-			else {
-				names[i] = right[b];
-		        b++;
-		   }
-		}
+	public static String[] mergeSortForString(String[] list)  {
+		 String [] sorted = new String[list.length];
+	        if (list.length == 1) {
+	            sorted = list;
+	        } 
+	        else {
+	            int mid = list.length/2;
+	            String[] left = null; 
+	            String[] right = null;
+	            if ((list.length % 2) == 0) {
+	                left = new String[list.length/2];
+	                right = new String[list.length/2];
+	            } 
+	            else { 
+	                left = new String[list.length/2];
+	                right = new String[(list.length/2)+1];
+	            }
+	            int x=0;
+	            int y=0;
+	            for ( ; x < mid; x++) {
+	                left[x] = list[x];
+	            }
+	            for ( ; x < list.length; x++) {
+	                right[y++] = list[x];
+	            }
+	            left = mergeSortForString(left);
+	            right = mergeSortForString(right);
+	            sorted = merge(left,right);
+	        }
+		return sorted;
 	}
+	
+
+	public static String[] merge(String[] left, String[] right) {
+		 String[] merged = new String[left.length+right.length];
+	        int lIndex = 0;
+	        int rIndex = 0;
+	        int mIndex = 0;
+	        int comp = 0;
+		while (lIndex < left.length || rIndex < right.length) {
+            if (lIndex == left.length) {
+                merged[mIndex++] = right[rIndex++];
+            } else if (rIndex == right.length) {
+                merged[mIndex++] = left[lIndex++];
+            } else {  
+                comp = left[lIndex].compareTo(right[rIndex]);
+                if (comp > 0) {
+                    merged[mIndex++] = right[rIndex++];
+                } else if (comp < 0) {
+                    merged[mIndex++] = left[lIndex++];
+                } else { 
+                    merged[mIndex++] = left[lIndex++];
+                }
+            }   
+        }
+		return merged;
+	}
+	
+	public static void magicNumber(int key,int start,int end,int iteratioin) {
+		int []array=new int[end];
+		for(int i=start;i<end;i++) {
+			array[i]=i;
+		}
+		Scanner scanner=new Scanner(System.in);
+		
+		end=end-1;
+		int count=0;
+		String choice="n";
+		 int mid = (start + end)/2;  
+		 while( start <= end&&count==iteratioin ){
+			 switch(choice) {
+			 case "n":
+				 if ( array[mid] < key ){  
+					 start = mid + 1;     
+				 }
+				 else if ( array[mid] == key ){  
+					 System.out.println("Element is found at index: " + mid);  
+					 break;  
+				 }
+				 else{  
+					 end = mid - 1;  
+				 }  
+				 mid = (start + end)/2;   
+				 System.out.println("It your search number? (y/n)");
+				 choice=scanner.nextLine();
+			 case "y":
+				 break;
+			 }
+			
+			 count++;
+		 }  
+		 if ( start > end ){  
+			 System.out.println("Element is not found!");  
+		 }
+		 scanner.close();
+	}
+	
+	public static void frequencyCount(String[] array) {
+		Arrays.sort(array);
+		int count=1;
+		int length=array.length;
+		for(int i=0;i<length;i++) {
+			if(array[i]==array[i+1]) {
+				count++;
+			}
+			else {
+				System.out.println(array[i]+"\t"+count);
+				count=1;
+			}
+		}
+	} 
 }

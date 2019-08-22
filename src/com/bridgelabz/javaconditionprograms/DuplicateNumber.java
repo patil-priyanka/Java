@@ -18,10 +18,10 @@ public class DuplicateNumber {
 
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
-		int[] array=new int[100];
+		int[] array=new int[10];
 		Random random=new Random();
 		for(int i=0;i<array.length;i++) {
-			array[i]=(int)random.nextInt(100)+1;
+			array[i]=(int)random.nextInt(10)+1;
 			System.out.print(" "+array[i]);
 		}
 		Utility utility=new Utility();
